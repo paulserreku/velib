@@ -36,9 +36,6 @@ def get_data():
         'Bikes Available': rec['fields'].get('numbikesavailable'),
         'Docks Available': rec['fields'].get('numdocksavailable'),
         'Capacity': rec['fields'].get('capacity'),
-        'Is Renting': rec['fields'].get('is_renting'),
-        'Is Installed': rec['fields'].get('is_installed'),
-        'Is Returning': rec['fields'].get('is_returning'),
         'Coordonnees Geo': rec['fields'].get('coordonnees_geo'),
     } for rec in records])
 
