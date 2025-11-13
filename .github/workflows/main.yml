@@ -1,9 +1,10 @@
 name: Fetch Velib Data Hourly
 
+permissions:
+  contents: write   # Autorise le workflow à faire un push
+
 on:
   schedule:
-    # ⏰ Exécuter chaque heure pile
-    - cron: "0 * * * *"
   workflow_dispatch:  # Permet le lancement manuel
 
 jobs:
