@@ -1,11 +1,13 @@
 name: Fetch Velib Data Hourly
 
 permissions:
-  contents: write   # Autorise le workflow à faire un push
+  contents: write  # autorise le push automatique
 
 on:
   schedule:
-  workflow_dispatch:  # Permet le lancement manuel
+    # Exécution toutes les heures pile (UTC)
+    - cron: "0 * * * *"
+  workflow_dispatch:  # permet le lancement manuel
 
 jobs:
   fetch:
@@ -31,6 +33,11 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/*.csv
-          git commit -m "Mise à jour données Vélib $(date '+%Y-%m-%d %H:%M:%S')" || echo "Aucune modification à commettre"
-          git push
+          git add data/*.csv || true
+          if git diff --staged --quiet; then
+            echo "Aucune modification à commettre."
+          else
+            git commit -m "Mise à jour données Vélib $(date '+%Y-%m-%d %H:%M:%S')"
+            git push
+          fi
+
