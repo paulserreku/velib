@@ -232,12 +232,11 @@ input[type=range].anim-slider {
     var img_id = "_anim_img907a639ee1f6464693aaaafa61337b6c";
     var slider_id = "_anim_slider907a639ee1f6464693aaaafa61337b6c";
     var loop_select_id = "_anim_loop_select907a639ee1f6464693aaaafa61337b6c";
-    var frames = new Array(720);
-    
-  for (var i=0; i<720; i++){
-    frames[i] = "velib_animation_districts_frames/frame" + ("0000000" + i).slice(-7) +
-                ".png";
-  }
+    // Only load the frames that exist locally (we currently have frame0000012.png to frame0000719.png)
+    var frames = [];
+    for (var i = 12; i <= 719; i++) {
+      frames.push("velib_animation_districts_frames/frame" + ("0000000" + i).slice(-7) + ".png");
+    }
 
 
     /* set a timeout to make sure all the above elements are created before
